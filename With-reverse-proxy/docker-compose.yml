@@ -25,6 +25,7 @@ services:
     container_name: pelican_wings
     restart: always
     ports:
+      - 8080:8080
       - 2022:2022
     extra_hosts:
       - "host.docker.internal:host-gateway"
