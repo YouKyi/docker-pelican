@@ -1,3 +1,4 @@
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/YouKyi/docker-pelican)
 # Docker Pelican Panel
 
 A Docker Compose setup for deploying [Pelican Panel](https://pelican.dev/) - a modern game server management panel. This repository provides two deployment configurations: with and without a reverse proxy.
