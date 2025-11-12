@@ -30,7 +30,7 @@ This configuration includes a Caddyfile for direct HTTPS deployment.
 1. Navigate to the directory:
 
 ```bash
-cd "Without reverse proxy"
+cd "Without-reverse-proxy"
 ```
 
 
