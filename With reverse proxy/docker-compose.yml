@@ -1,0 +1,82 @@
+services:
+  panel:
+    image: ghcr.io/pelican-dev/panel:latest
+    container_name: pelican
+    restart: always
+    ports:
+      - "80:80"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - pelican-data:/pelican-data
+      - pelican-logs:/var/www/html/storage/logs
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    environment:
+      TZ: Europe/Paris  # Change this variable
+      APP_TIMEZONE: Europe/Paris  # Change this variable
+      APP_ENV: production
+      APP_URL: "https://panel.domain.com"  # Change this variable
+      ADMIN_EMAIL: admin@domain.com  # Change this variable
+    networks:
+      - pelican-net
+
+  wings:
+    image: ghcr.io/pelican-dev/wings:latest
+    container_name: pelican_wings
+    restart: always
+    ports:
+      - 2022:2022
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      TZ: Europe/Paris  # Change this variable
+      APP_TIMEZONE: Europe/Paris  # Change this variable
+      WINGS_UID: 1000
+      WINGS_GID: 1000
+      WINGS_USERNAME: pelican
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "/var/lib/docker/containers/:/var/lib/docker/containers/"
+      - "/etc/pelican/:/etc/pelican/"
+      - "/var/lib/pelican/:/var/lib/pelican/"
+      - "/var/log/pelican/:/var/log/pelican/"
+      - "/tmp/pelican/:/tmp/pelican/"
+      - "/etc/ssl/certs:/etc/ssl/certs:ro"
+    networks:
+      - wings0
+
+  database:
+    image: mariadb:latest
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - "pelican-db:/var/lib/mysql"
+    environment:
+      MYSQL_PASSWORD: "changeme"  # Change this variable
+      MYSQL_ROOT_PASSWORD: "changeme" # Change this variable
+      MYSQL_DATABASE: "panel"
+      MYSQL_USER: "pelican"
+    networks:
+      - pelican-net
+
+  pelican-exporter:
+    image: loens2/pterodactyl_exporter:latest
+    container_name: pelican-exporter
+    ports:
+      - "9531:9531"
+    volumes:
+      - ./config.yml:/opt/pterodactyl_exporter/config/config.yml
+
+volumes:
+  pelican-data:
+  pelican-logs:
+  pelican-db:
+
+networks:
+  pelican-net:
+    name: pelican-net
+  wings0:
+    name: wings0
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.name: wings0
