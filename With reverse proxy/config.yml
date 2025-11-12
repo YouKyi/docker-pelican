@@ -1,4 +1,4 @@
-host: [domain.com]
+host: [panel.domain.com]
 host_port: 443
 port: 9531 # This is tge standard port for the exporter
 api_key: {apikey}
