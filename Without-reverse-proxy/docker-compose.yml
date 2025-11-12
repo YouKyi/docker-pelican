@@ -58,13 +58,13 @@ services:
     networks:
       - pelican-net
 
-  pelican-exporter:
-    image: loens2/pterodactyl_exporter:latest
-    container_name: pelican-exporter
-    ports:
-      - "9531:9531"
-    volumes:
-      - ./config.yml:/opt/pterodactyl_exporter/config/config.yml
+  # pelican-exporter:          # if you want a prometheus endpoint uncomment these. Related doc -> https://github.com/LOENS2/pterodactyl_exporter
+  #   image: loens2/pterodactyl_exporter:latest
+  #   container_name: pelican-exporter
+  #   ports:
+  #     - "9531:9531"
+  #   volumes:
+  #     - ./config.yml:/opt/pterodactyl_exporter/config/config.yml
 
 volumes:
   pelican-data:
