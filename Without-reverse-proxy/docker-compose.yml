@@ -10,7 +10,6 @@ services:
     volumes:
       - pelican-data:/pelican-data
       - pelican-logs:/var/www/html/storage/logs
-      - ./Caddyfile:/etc/caddy/Caddyfile
     environment:
       TZ: Europe/Paris  # Change this variable
       APP_TIMEZONE: Europe/Paris  # Change this variable
