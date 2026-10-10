@@ -74,13 +74,13 @@ docker-compose up -d
 #### Pelican Panel
 
 * **Port**: 80 (HTTP)
-* **Image**: `ghcr.io/pelican-dev/panel:latest`
+* **Image**: `ghcr.io/pelican/panel:latest`
 * **Purpose**: Main control panel interface 
 
 #### Wings Daemon
 
 * **Port**: 2022 (SFTP)
-* **Image**: `ghcr.io/pelican-dev/wings:latest`
+* **Image**: `ghcr.io/pelican/wings:latest`
 * **Purpose**: Server daemon for managing game servers 
 
 #### Database
