@@ -20,7 +20,7 @@ services:
       - pelican-net
 
   wings:
-    image: ghcr.io/pelican/wings:latest@sha256:cf62cae99329dde1a0507d144fc5fb0c5e9d6c8346e6987d67dc08bc323e5644
+    image: ghcr.io/pelican/wings:latest@sha256:45a970378805c1fb9ba25c8f933c25f2339e5a7a87d9925721b89459abe66c7b
     container_name: pelican_wings
     restart: always
     ports:
