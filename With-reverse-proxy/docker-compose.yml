@@ -1,6 +1,6 @@
 services:
   panel:
-    image: ghcr.io/pelican/panel:latest@sha256:e702567f1099171f658250fc6c2f747ab98b6f8449aa62ad032110c5c7466eb7
+    image: ghcr.io/pelican/panel:latest@sha256:68618885bb9cf49154c627863ba0bfc7308888ec87536aee7c8cbc2e4b0d929d
     container_name: pelican
     restart: always
     ports:
